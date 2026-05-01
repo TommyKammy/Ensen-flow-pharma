@@ -6,6 +6,7 @@ const requiredFiles = [
   ".gitignore",
   ".github/workflows/ci.yml",
   "README.md",
+  "docs/erpnext-object-mapping.md",
   "docs/intended-use.md",
   "docs/validation-templates/README.md",
   "package.json",
@@ -60,7 +61,7 @@ for (const sourcePath of [
   }
 }
 
-for (const path of ["README.md", "docs/intended-use.md", "docs/validation-templates/README.md"]) {
+for (const path of ["README.md", "docs/erpnext-object-mapping.md", "docs/intended-use.md", "docs/validation-templates/README.md"]) {
   if (!(await fileExists(path))) {
     continue;
   }
@@ -77,6 +78,10 @@ if (await fileExists("README.md")) {
   const readme = readFileSync("README.md", "utf8");
   if (!/\[[^\]]*intended use[^\]]*\]\(docs\/intended-use\.md\)/i.test(readme)) {
     failures.push("README.md must link to docs/intended-use.md with intended-use navigation text.");
+  }
+
+  if (!/\[[^\]]*ERPNext[^\]]*mapping[^\]]*\]\(docs\/erpnext-object-mapping\.md\)/i.test(readme)) {
+    failures.push("README.md must link to docs/erpnext-object-mapping.md with ERPNext mapping navigation text.");
   }
 }
 
@@ -95,6 +100,26 @@ if (await fileExists("docs/intended-use.md")) {
   ]) {
     if (!intendedUse.includes(phrase)) {
       failures.push(`docs/intended-use.md must name the boundary phrase: ${phrase}`);
+    }
+  }
+}
+
+if (await fileExists("docs/erpnext-object-mapping.md")) {
+  const mapping = readFileSync("docs/erpnext-object-mapping.md", "utf8").toLowerCase();
+  for (const phrase of [
+    "draft until validated",
+    "data classification",
+    "future usage",
+    "evidence",
+    "audit",
+    "live erpnext connector",
+    "write-back",
+    "regulated workflow operation",
+    "electronic signature",
+    "compliance guarantee"
+  ]) {
+    if (!mapping.includes(phrase)) {
+      failures.push(`docs/erpnext-object-mapping.md must name the mapping phrase: ${phrase}`);
     }
   }
 }
