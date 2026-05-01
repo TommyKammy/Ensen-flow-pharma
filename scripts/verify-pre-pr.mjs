@@ -52,6 +52,14 @@ function gitCheckIgnore(path) {
   }
 }
 
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function containsRequiredPhrase(contents, phrase) {
+  return new RegExp(`\\b${escapeRegExp(phrase)}\\b`, "i").test(contents);
+}
+
 const failures = [];
 
 for (const path of requiredFiles) {
@@ -60,12 +68,7 @@ for (const path of requiredFiles) {
   }
 }
 
-for (const sourcePath of [
-  ".github/workflows/ci.yml",
-  "docs/validation-package/README.md",
-  "docs/validation-templates/README.md",
-  "scripts/verify-pre-pr.mjs"
-]) {
+for (const sourcePath of requiredFiles.filter((path) => path !== ".gitignore")) {
   if (gitCheckIgnore(sourcePath)) {
     failures.push(`Source path is unexpectedly ignored by .gitignore: ${sourcePath}`);
   }
@@ -184,7 +187,7 @@ for (const [path, phrases] of validationPackageExpectations) {
 
   const contents = readFileSync(path, "utf8").toLowerCase();
   for (const phrase of phrases) {
-    if (!contents.includes(phrase)) {
+    if (!containsRequiredPhrase(contents, phrase)) {
       failures.push(`${path} must name the validation skeleton phrase: ${phrase}`);
     }
   }
