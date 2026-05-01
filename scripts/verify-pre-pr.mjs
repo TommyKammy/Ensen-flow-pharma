@@ -8,6 +8,15 @@ const requiredFiles = [
   "README.md",
   "docs/erpnext-object-mapping.md",
   "docs/intended-use.md",
+  "docs/validation-package/README.md",
+  "docs/validation-package/functional-specification.md",
+  "docs/validation-package/installation-qualification.md",
+  "docs/validation-package/operational-qualification.md",
+  "docs/validation-package/performance-qualification.md",
+  "docs/validation-package/risk-assessment.md",
+  "docs/validation-package/traceability-matrix.md",
+  "docs/validation-package/user-requirements-specification.md",
+  "docs/validation-package/validation-plan.md",
   "docs/validation-templates/README.md",
   "package.json",
   "scripts/verify-pre-pr.mjs"
@@ -43,6 +52,14 @@ function gitCheckIgnore(path) {
   }
 }
 
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function containsRequiredPhrase(contents, phrase) {
+  return new RegExp(`\\b${escapeRegExp(phrase)}\\b`, "i").test(contents);
+}
+
 const failures = [];
 
 for (const path of requiredFiles) {
@@ -51,17 +68,13 @@ for (const path of requiredFiles) {
   }
 }
 
-for (const sourcePath of [
-  ".github/workflows/ci.yml",
-  "docs/validation-templates/README.md",
-  "scripts/verify-pre-pr.mjs"
-]) {
+for (const sourcePath of requiredFiles.filter((path) => path !== ".gitignore")) {
   if (gitCheckIgnore(sourcePath)) {
     failures.push(`Source path is unexpectedly ignored by .gitignore: ${sourcePath}`);
   }
 }
 
-for (const path of ["README.md", "docs/erpnext-object-mapping.md", "docs/intended-use.md", "docs/validation-templates/README.md"]) {
+for (const path of requiredFiles.filter((path) => path.endsWith(".md"))) {
   if (!(await fileExists(path))) {
     continue;
   }
@@ -82,6 +95,10 @@ if (await fileExists("README.md")) {
 
   if (!/\[[^\]]*ERPNext[^\]]*mapping[^\]]*\]\(docs\/erpnext-object-mapping\.md\)/i.test(readme)) {
     failures.push("README.md must link to docs/erpnext-object-mapping.md with ERPNext mapping navigation text.");
+  }
+
+  if (!/\[[^\]]*validation package[^\]]*\]\(docs\/validation-package\/README\.md\)/i.test(readme)) {
+    failures.push("README.md must link to docs/validation-package/README.md with validation package navigation text.");
   }
 }
 
@@ -120,6 +137,58 @@ if (await fileExists("docs/erpnext-object-mapping.md")) {
   ]) {
     if (!mapping.includes(phrase)) {
       failures.push(`docs/erpnext-object-mapping.md must name the mapping phrase: ${phrase}`);
+    }
+  }
+}
+
+if (await fileExists("docs/validation-package/README.md")) {
+  const packageReadme = readFileSync("docs/validation-package/README.md", "utf8").toLowerCase();
+  for (const phrase of [
+    "validation plan",
+    "user requirements specification",
+    "functional specification",
+    "risk assessment",
+    "traceability matrix",
+    "installation qualification",
+    "operational qualification",
+    "performance qualification",
+    "intended use",
+    "gxp boundary",
+    "erpnext object mapping",
+    "evidence",
+    "audit",
+    "read-only",
+    "draft-only",
+    "human approval",
+    "not a validated workflow",
+    "not a compliance guarantee"
+  ]) {
+    if (!packageReadme.includes(phrase)) {
+      failures.push(`docs/validation-package/README.md must name the validation package phrase: ${phrase}`);
+    }
+  }
+}
+
+const validationPackageExpectations = new Map([
+  ["docs/validation-package/validation-plan.md", ["purpose", "scope", "intended use", "gxp boundary", "read-only", "draft-only", "human approval", "evidence", "audit", "open placeholders"]],
+  ["docs/validation-package/user-requirements-specification.md", ["user requirements specification", "urs", "requirement id", "acceptance approach", "human approval", "draft-only", "open placeholders"]],
+  ["docs/validation-package/functional-specification.md", ["functional specification", "fs", "requirement link", "design placeholder", "erpnext", "ensen evidence", "audit", "open placeholders"]],
+  ["docs/validation-package/risk-assessment.md", ["risk assessment", "risk id", "hazard", "control", "severity", "occurrence", "detectability", "open placeholders"]],
+  ["docs/validation-package/traceability-matrix.md", ["traceability matrix", "urs id", "fs id", "risk id", "iq", "oq", "pq", "open placeholders"]],
+  ["docs/validation-package/installation-qualification.md", ["installation qualification", "iq", "prerequisite", "evidence placeholder", "expected result", "open placeholders"]],
+  ["docs/validation-package/operational-qualification.md", ["operational qualification", "oq", "test objective", "acceptance criteria", "evidence placeholder", "open placeholders"]],
+  ["docs/validation-package/performance-qualification.md", ["performance qualification", "pq", "scenario", "acceptance criteria", "evidence placeholder", "open placeholders"]]
+]);
+
+for (const [path, phrases] of validationPackageExpectations) {
+  if (!(await fileExists(path))) {
+    continue;
+  }
+
+  const contents = readFileSync(path, "utf8").toLowerCase();
+  for (const phrase of phrases) {
+    if (!containsRequiredPhrase(contents, phrase)) {
+      failures.push(`${path} must name the validation skeleton phrase: ${phrase}`);
     }
   }
 }
