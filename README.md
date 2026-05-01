@@ -19,4 +19,5 @@ CI runs the same command for pull requests and pushes to `main`.
 - `.gitignore` keeps local/generated artifacts out of source control without hiding documentation, validation templates, fixtures, or GitHub workflow files.
 - `.github/workflows/ci.yml` runs the baseline verification command.
 - The [first pilot intended use and GxP boundary](docs/intended-use.md) document defines the supported scaffolding and out-of-scope regulated operations.
+- The [ERPNext object mapping draft](docs/erpnext-object-mapping.md) identifies candidate source objects, Ensen-flow-pharma concepts, data classification notes, future usage, and evidence/audit implications.
 - `docs/validation-templates/` is reserved for future validation-ready templates and examples.
