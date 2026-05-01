@@ -6,6 +6,7 @@ const requiredFiles = [
   ".gitignore",
   ".github/workflows/ci.yml",
   "README.md",
+  "docs/intended-use.md",
   "docs/validation-templates/README.md",
   "package.json",
   "scripts/verify-pre-pr.mjs"
@@ -59,7 +60,7 @@ for (const sourcePath of [
   }
 }
 
-for (const path of ["README.md", "docs/validation-templates/README.md"]) {
+for (const path of ["README.md", "docs/intended-use.md", "docs/validation-templates/README.md"]) {
   if (!(await fileExists(path))) {
     continue;
   }
@@ -68,6 +69,32 @@ for (const path of ["README.md", "docs/validation-templates/README.md"]) {
   for (const pattern of forbiddenClaims) {
     if (pattern.test(contents)) {
       failures.push(`Forbidden compliance guarantee language found in ${path}: ${pattern}`);
+    }
+  }
+}
+
+if (await fileExists("README.md")) {
+  const readme = readFileSync("README.md", "utf8");
+  if (!/\[[^\]]*intended use[^\]]*\]\(docs\/intended-use\.md\)/i.test(readme)) {
+    failures.push("README.md must link to docs/intended-use.md with intended-use navigation text.");
+  }
+}
+
+if (await fileExists("docs/intended-use.md")) {
+  const intendedUse = readFileSync("docs/intended-use.md", "utf8").toLowerCase();
+  for (const phrase of [
+    "read-only inputs",
+    "draft-only outputs",
+    "human approval",
+    "batch release",
+    "final product disposition",
+    "automated quality decisions",
+    "live erpnext operation",
+    "electronic signature implementation",
+    "compliance guarantees"
+  ]) {
+    if (!intendedUse.includes(phrase)) {
+      failures.push(`docs/intended-use.md must name the boundary phrase: ${phrase}`);
     }
   }
 }

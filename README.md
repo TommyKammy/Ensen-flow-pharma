@@ -18,4 +18,5 @@ CI runs the same command for pull requests and pushes to `main`.
 
 - `.gitignore` keeps local/generated artifacts out of source control without hiding documentation, validation templates, fixtures, or GitHub workflow files.
 - `.github/workflows/ci.yml` runs the baseline verification command.
+- The [first pilot intended use and GxP boundary](docs/intended-use.md) document defines the supported scaffolding and out-of-scope regulated operations.
 - `docs/validation-templates/` is reserved for future validation-ready templates and examples.
