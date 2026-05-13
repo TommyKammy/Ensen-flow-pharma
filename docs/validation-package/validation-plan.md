@@ -8,9 +8,11 @@ This validation plan is a draft-only scaffold for future Ensen-flow-pharma valid
 
 - Intended use: future planning for a Pharma/GxP workflow package that may reference Ensen Flow concepts.
 - GxP boundary: documentation and template scaffolding only.
+- Regulated workflow controls: read-only source context and draft-only generated assets remain separate from any controlled validation package.
 - Read-only inputs: copied or documented source context only; no live ERPNext operation or write-back.
 - Draft-only outputs: generated or assembled materials remain drafts until approved through a qualified external process.
-- Human approval: qualified human review is required before any regulated use, release decision, disposition decision, or quality action.
+- Human approval: a qualified human approval checkpoint is required before any regulated use, release decision, disposition decision, quality action, or acceptance of validation package deltas into a controlled package.
+- Automatic quality decision boundary: this plan does not support automatic quality decision behavior, automatic release, automatic disposition, live write-back, or electronic signatures.
 
 ## Responsibilities
 
