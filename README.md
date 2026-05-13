@@ -24,4 +24,5 @@ CI runs the same command for pull requests and pushes to `main`.
 - The [regulated workflow controls](docs/regulated-workflow-controls.md) document defines read-only input controls, draft-only output controls, human approval checkpoints, and non-goals for automatic quality decisions or regulated write-back.
 - The [ERPNext object mapping draft](docs/erpnext-object-mapping.md) identifies candidate source objects, Ensen-flow-pharma concepts, data classification notes, future usage, and evidence/audit implications.
 - The [validation package skeleton](docs/validation-package/README.md) provides draft-only placeholders for validation planning, requirements, risk, traceability, and IQ/OQ/PQ-style evidence planning.
+- The [Track B validation delta](docs/validation-package/track-b-validation-delta.md) adds draft-only placeholders for customer-confidential and regulated input boundary planning.
 - `docs/validation-templates/` is reserved for future validation-ready templates and examples.

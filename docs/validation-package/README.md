@@ -12,6 +12,7 @@ The skeleton cross-references the pilot intended use, GxP boundary, ERPNext obje
 - [User requirements specification](user-requirements-specification.md) for URS placeholders.
 - [Functional specification](functional-specification.md) for design placeholders linked to requirements.
 - [Risk assessment](risk-assessment.md) for draft risk controls and review notes.
+- [Track B validation delta](track-b-validation-delta.md) for customer-confidential and regulated input boundary placeholders, source provenance, classification, confidential references, draft status, human approval, evidence retention, rollback / revocation, and residual risk planning.
 - [Traceability matrix](traceability-matrix.md) for URS, FS, risk, IQ, OQ, and PQ linkage planning.
 - [Installation qualification](installation-qualification.md) for IQ evidence planning.
 - [Operational qualification](operational-qualification.md) for OQ evidence planning.
@@ -26,6 +27,7 @@ The skeleton cross-references the pilot intended use, GxP boundary, ERPNext obje
 - Read-only source posture: source references are copied or documented examples only.
 - Draft-only output posture: every artifact remains open placeholders until a qualified process approves it outside this repository.
 - Human approval: regulated use, release decisions, disposition decisions, and quality actions require qualified human approval outside this scaffold.
+- Track B validation delta: customer-confidential and regulated input boundary fields remain open placeholders for intended-use-specific validation planning.
 - Regulated workflow controls: validation package deltas remain draft-only outputs, source context remains under read-only input controls, and human approval checkpoints must be explicit before any controlled validation package use.
 - Automatic quality decision boundary: generated validation package assets must not claim automatic quality decisions, automatic release, automatic disposition, live write-back, or electronic signatures.
 - Evidence and audit posture: future evidence and audit fields must distinguish copied source context, reviewer notes, and approval state.
@@ -41,3 +43,4 @@ The skeleton cross-references the pilot intended use, GxP boundary, ERPNext obje
 - Evidence repository:
 - Approval process:
 - Revision history:
+- Track B validation delta owner:
