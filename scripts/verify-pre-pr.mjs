@@ -17,6 +17,7 @@ const requiredFiles = [
   "docs/validation-package/operational-qualification.md",
   "docs/validation-package/performance-qualification.md",
   "docs/validation-package/risk-assessment.md",
+  "docs/validation-package/track-b-validation-delta.md",
   "docs/validation-package/traceability-matrix.md",
   "docs/validation-package/user-requirements-specification.md",
   "docs/validation-package/validation-plan.md",
@@ -288,6 +289,7 @@ if (await fileExists("docs/validation-package/README.md")) {
     "automatic quality decision",
     "artifact safety",
     "synthetic-only public examples",
+    "track b validation delta",
     "not a validated workflow",
     "not a compliance guarantee"
   ]) {
@@ -302,6 +304,7 @@ const validationPackageExpectations = new Map([
   ["docs/validation-package/user-requirements-specification.md", ["user requirements specification", "urs", "requirement id", "acceptance approach", "human approval", "draft-only", "open placeholders"]],
   ["docs/validation-package/functional-specification.md", ["functional specification", "fs", "requirement link", "design placeholder", "erpnext", "ensen evidence", "audit", "open placeholders"]],
   ["docs/validation-package/risk-assessment.md", ["risk assessment", "risk id", "hazard", "control", "severity", "occurrence", "detectability", "open placeholders"]],
+  ["docs/validation-package/track-b-validation-delta.md", ["track b validation delta", "customer-confidential", "regulated input", "source provenance", "data classification", "confidential reference", "draft status", "human approval", "evidence retention", "rollback / revocation", "residual risk", "intended use", "artifact safety", "read-only input controls", "draft-only output controls", "open placeholders", "not a validated workflow", "not a compliance guarantee"]],
   ["docs/validation-package/traceability-matrix.md", ["traceability matrix", "urs id", "fs id", "risk id", "iq", "oq", "pq", "open placeholders"]],
   ["docs/validation-package/installation-qualification.md", ["installation qualification", "iq", "prerequisite", "evidence placeholder", "expected result", "open placeholders"]],
   ["docs/validation-package/operational-qualification.md", ["operational qualification", "oq", "test objective", "acceptance criteria", "evidence placeholder", "open placeholders"]],
