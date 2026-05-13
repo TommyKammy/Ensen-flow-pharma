@@ -19,6 +19,7 @@ The skeleton cross-references the pilot intended use, GxP boundary, ERPNext obje
 - [Performance qualification](performance-qualification.md) for PQ evidence planning.
 - [Regulated-content artifact safety](../artifact-safety.md) for synthetic-only public examples and confidential-reference boundaries.
 - [Regulated workflow controls](../regulated-workflow-controls.md) for read-only input controls, draft-only output controls, human approval checkpoints, and non-goals for automatic quality decision behavior.
+- [Customer-readiness checklist](../customer-readiness-checklist.md) for documentation-only pilot discussion gates, fail-closed stop conditions, and residual risk review.
 
 ## Control Points
 
