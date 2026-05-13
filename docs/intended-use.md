@@ -6,12 +6,23 @@ The first Ensen-flow-pharma pilot provides validation-ready scaffolding for futu
 
 The pilot is an authoring and planning aid. It is not a production quality system, live operational integration, or regulated decision engine.
 
+Customer-confidential or regulated input handling described here is planning guidance only until later approved pilot gates explicitly authorize that handling outside this repository. The repository may describe public, internal, customer-confidential, and regulated input contexts so future package authors can plan boundaries, but it must not store real customer records, raw regulated data, raw credential material, live connector details, or production regulated evidence.
+
 ## Supported Pilot Scaffolding
 
 - Repo-local intended-use, boundary, and validation-readiness documentation.
 - Draft template locations for future validation assets.
 - Explicit terminology for expected human control points.
-- Examples that can be reviewed, revised, and approved by qualified humans before any regulated use.
+- Synthetic, public-safe examples that can be reviewed, revised, and approved by qualified humans before any regulated use.
+
+## Input Contexts
+
+The pilot uses four input context labels for planning and review:
+
+- Public: synthetic examples, public protocol references, documentation, and validation-ready skeleton text that are safe to publish.
+- Internal: non-public operator or planning notes that are not customer-owned and not regulated.
+- Customer-confidential: customer-owned, customer-identifying, customer-provided, or customer-system-derived material. This repository may plan handling boundaries for this context, but must not include real customer-confidential inputs.
+- Regulated input: material subject to GxP, electronic record, retention, privacy, or other regulated handling controls. This repository may describe future boundary expectations, but must not include raw regulated input data or claim validated handling.
 
 ## GxP Boundary
 
@@ -27,6 +38,8 @@ Later issues must preserve these control points:
 
 The first pilot does not provide:
 
+- Customer SOP authoring, customer SOP approval, training, change control, or validation execution.
+- Customer-SOP-free validation execution or any claim that this repository can replace a customer's controlled quality system.
 - Batch release.
 - Final product disposition.
 - Automated quality decisions.
