@@ -10,6 +10,7 @@ const requiredFiles = [
   "docs/erpnext-object-mapping.md",
   "docs/intended-use.md",
   "docs/protocol-v0.4.0-track-b-boundary.md",
+  "docs/regulated-workflow-controls.md",
   "docs/validation-package/README.md",
   "docs/validation-package/functional-specification.md",
   "docs/validation-package/installation-qualification.md",
@@ -109,6 +110,10 @@ if (await fileExists("README.md")) {
 
   if (!/\[[^\]]*artifact safety[^\]]*\]\(docs\/artifact-safety\.md\)/i.test(readme)) {
     failures.push("README.md must link to docs/artifact-safety.md with artifact safety navigation text.");
+  }
+
+  if (!/\[[^\]]*regulated workflow controls[^\]]*\]\(docs\/regulated-workflow-controls\.md\)/i.test(readme)) {
+    failures.push("README.md must link to docs/regulated-workflow-controls.md with regulated workflow controls navigation text.");
   }
 }
 
@@ -227,6 +232,36 @@ if (await fileExists("docs/artifact-safety.md")) {
   }
 }
 
+if (await fileExists("docs/regulated-workflow-controls.md")) {
+  const regulatedWorkflowControls = readFileSync("docs/regulated-workflow-controls.md", "utf8").toLowerCase();
+  for (const phrase of [
+    "regulated workflow controls",
+    "read-only input controls",
+    "copied",
+    "exported",
+    "fake",
+    "reference-only",
+    "draft-only output controls",
+    "workflow package assets",
+    "validation package deltas",
+    "human approval checkpoint",
+    "regulated use",
+    "release decision",
+    "disposition decision",
+    "quality action",
+    "automatic quality decisions",
+    "automatic release",
+    "automatic disposition",
+    "live write-back",
+    "electronic signatures",
+    "non-goals"
+  ]) {
+    if (!regulatedWorkflowControls.includes(phrase)) {
+      failures.push(`docs/regulated-workflow-controls.md must name the regulated workflow control phrase: ${phrase}`);
+    }
+  }
+}
+
 if (await fileExists("docs/validation-package/README.md")) {
   const packageReadme = readFileSync("docs/validation-package/README.md", "utf8").toLowerCase();
   for (const phrase of [
@@ -246,6 +281,11 @@ if (await fileExists("docs/validation-package/README.md")) {
     "read-only",
     "draft-only",
     "human approval",
+    "regulated workflow controls",
+    "read-only input controls",
+    "draft-only output controls",
+    "human approval checkpoints",
+    "automatic quality decision",
     "artifact safety",
     "synthetic-only public examples",
     "not a validated workflow",
@@ -258,7 +298,7 @@ if (await fileExists("docs/validation-package/README.md")) {
 }
 
 const validationPackageExpectations = new Map([
-  ["docs/validation-package/validation-plan.md", ["purpose", "scope", "intended use", "gxp boundary", "read-only", "draft-only", "human approval", "evidence", "audit", "open placeholders"]],
+  ["docs/validation-package/validation-plan.md", ["purpose", "scope", "intended use", "gxp boundary", "regulated workflow controls", "read-only", "draft-only", "human approval", "human approval checkpoint", "automatic quality decision", "evidence", "audit", "open placeholders"]],
   ["docs/validation-package/user-requirements-specification.md", ["user requirements specification", "urs", "requirement id", "acceptance approach", "human approval", "draft-only", "open placeholders"]],
   ["docs/validation-package/functional-specification.md", ["functional specification", "fs", "requirement link", "design placeholder", "erpnext", "ensen evidence", "audit", "open placeholders"]],
   ["docs/validation-package/risk-assessment.md", ["risk assessment", "risk id", "hazard", "control", "severity", "occurrence", "detectability", "open placeholders"]],

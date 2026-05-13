@@ -17,6 +17,7 @@ The skeleton cross-references the pilot intended use, GxP boundary, ERPNext obje
 - [Operational qualification](operational-qualification.md) for OQ evidence planning.
 - [Performance qualification](performance-qualification.md) for PQ evidence planning.
 - [Regulated-content artifact safety](../artifact-safety.md) for synthetic-only public examples and confidential-reference boundaries.
+- [Regulated workflow controls](../regulated-workflow-controls.md) for read-only input controls, draft-only output controls, human approval checkpoints, and non-goals for automatic quality decision behavior.
 
 ## Control Points
 
@@ -25,6 +26,8 @@ The skeleton cross-references the pilot intended use, GxP boundary, ERPNext obje
 - Read-only source posture: source references are copied or documented examples only.
 - Draft-only output posture: every artifact remains open placeholders until a qualified process approves it outside this repository.
 - Human approval: regulated use, release decisions, disposition decisions, and quality actions require qualified human approval outside this scaffold.
+- Regulated workflow controls: validation package deltas remain draft-only outputs, source context remains under read-only input controls, and human approval checkpoints must be explicit before any controlled validation package use.
+- Automatic quality decision boundary: generated validation package assets must not claim automatic quality decisions, automatic release, automatic disposition, live write-back, or electronic signatures.
 - Evidence and audit posture: future evidence and audit fields must distinguish copied source context, reviewer notes, and approval state.
 - Artifact safety: public validation package examples must stay synthetic-only public examples; raw customer data, raw regulated records, raw credentials, raw secrets, workstation-local absolute paths, live connector details, and customer identifiers fail closed and stay out of committed public artifacts.
 
