@@ -6,6 +6,7 @@ const requiredFiles = [
   ".gitignore",
   ".github/workflows/ci.yml",
   "README.md",
+  "docs/artifact-safety.md",
   "docs/erpnext-object-mapping.md",
   "docs/intended-use.md",
   "docs/protocol-v0.4.0-track-b-boundary.md",
@@ -105,6 +106,10 @@ if (await fileExists("README.md")) {
   if (!/\[[^\]]*Protocol v0\.4\.0[^\]]*\]\(docs\/protocol-v0\.4\.0-track-b-boundary\.md\)/i.test(readme)) {
     failures.push("README.md must link to docs/protocol-v0.4.0-track-b-boundary.md with Protocol v0.4.0 navigation text.");
   }
+
+  if (!/\[[^\]]*artifact safety[^\]]*\]\(docs\/artifact-safety\.md\)/i.test(readme)) {
+    failures.push("README.md must link to docs/artifact-safety.md with artifact safety navigation text.");
+  }
 }
 
 if (await fileExists("docs/intended-use.md")) {
@@ -194,6 +199,34 @@ if (await fileExists("docs/protocol-v0.4.0-track-b-boundary.md")) {
   }
 }
 
+if (await fileExists("docs/artifact-safety.md")) {
+  const artifactSafety = readFileSync("docs/artifact-safety.md", "utf8").toLowerCase();
+  for (const phrase of [
+    "artifact safety",
+    "synthetic-only public examples",
+    "confidential references",
+    "customer-confidential",
+    "regulated",
+    "protocol v0.4.0 track b",
+    "public",
+    "raw customer data",
+    "raw regulated records",
+    "raw credentials",
+    "raw secrets",
+    "workstation-local absolute paths",
+    "live connector details",
+    "customer identifiers",
+    "fail closed",
+    "do not publish",
+    "validation package",
+    "validation templates"
+  ]) {
+    if (!artifactSafety.includes(phrase)) {
+      failures.push(`docs/artifact-safety.md must name the artifact safety phrase: ${phrase}`);
+    }
+  }
+}
+
 if (await fileExists("docs/validation-package/README.md")) {
   const packageReadme = readFileSync("docs/validation-package/README.md", "utf8").toLowerCase();
   for (const phrase of [
@@ -213,6 +246,8 @@ if (await fileExists("docs/validation-package/README.md")) {
     "read-only",
     "draft-only",
     "human approval",
+    "artifact safety",
+    "synthetic-only public examples",
     "not a validated workflow",
     "not a compliance guarantee"
   ]) {
