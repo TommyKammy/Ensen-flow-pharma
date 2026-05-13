@@ -8,6 +8,7 @@ const requiredFiles = [
   "README.md",
   "docs/erpnext-object-mapping.md",
   "docs/intended-use.md",
+  "docs/protocol-v0.4.0-track-b-boundary.md",
   "docs/validation-package/README.md",
   "docs/validation-package/functional-specification.md",
   "docs/validation-package/installation-qualification.md",
@@ -100,6 +101,10 @@ if (await fileExists("README.md")) {
   if (!/\[[^\]]*validation package[^\]]*\]\(docs\/validation-package\/README\.md\)/i.test(readme)) {
     failures.push("README.md must link to docs/validation-package/README.md with validation package navigation text.");
   }
+
+  if (!/\[[^\]]*Protocol v0\.4\.0[^\]]*\]\(docs\/protocol-v0\.4\.0-track-b-boundary\.md\)/i.test(readme)) {
+    failures.push("README.md must link to docs/protocol-v0.4.0-track-b-boundary.md with Protocol v0.4.0 navigation text.");
+  }
 }
 
 if (await fileExists("docs/intended-use.md")) {
@@ -137,6 +142,44 @@ if (await fileExists("docs/erpnext-object-mapping.md")) {
   ]) {
     if (!mapping.includes(phrase)) {
       failures.push(`docs/erpnext-object-mapping.md must name the mapping phrase: ${phrase}`);
+    }
+  }
+}
+
+if (await fileExists("docs/protocol-v0.4.0-track-b-boundary.md")) {
+  const protocolBoundary = readFileSync("docs/protocol-v0.4.0-track-b-boundary.md", "utf8");
+  const lowerProtocolBoundary = protocolBoundary.toLowerCase();
+
+  for (const phrase of [
+    "ensen-protocol",
+    "v0.4.0",
+    "f6c3c5b",
+    "x-gate 3 track b",
+    "customer / regulated evidence boundary",
+    "public",
+    "internal",
+    "customer-confidential",
+    "regulated",
+    "classification required",
+    "missing or unknown classification",
+    "approval-required",
+    "approved",
+    "rejected",
+    "revoked",
+    "superseded",
+    "draft-only",
+    "human approval",
+    "not-applied",
+    "not a production gxp execution claim",
+    "not a compliance guarantee",
+    "not part 11 or annex 11 assurance",
+    "no customer records",
+    "no regulated record payloads",
+    "no raw secrets",
+    "no live connector details"
+  ]) {
+    if (!lowerProtocolBoundary.includes(phrase)) {
+      failures.push(`docs/protocol-v0.4.0-track-b-boundary.md must name the Protocol v0.4.0 boundary phrase: ${phrase}`);
     }
   }
 }

@@ -5,6 +5,8 @@
   "description": "Validation-ready Pharma/GxP workflow scaffolding for Ensen Flow.",
   "type": "module",
   "scripts": {
+    "build": "npm run verify:pre-pr",
+    "test": "npm run verify:pre-pr",
     "verify:pre-pr": "node scripts/verify-pre-pr.mjs"
   },
   "engines": {
