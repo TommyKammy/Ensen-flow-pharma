@@ -4,7 +4,7 @@
 
 This directory contains draft-only validation package scaffolding for future Ensen-flow-pharma work. It is a planning aid for validation package authors and reviewers, not a validated workflow and not a compliance guarantee.
 
-The skeleton cross-references the pilot intended use, GxP boundary, ERPNext object mapping draft, and future Ensen evidence and audit concepts without adding runtime behavior.
+The skeleton cross-references the pilot intended use, GxP boundary, ERPNext object mapping draft, artifact safety guidance, and future Ensen evidence and audit concepts without adding runtime behavior.
 
 ## Package Index
 
@@ -16,6 +16,7 @@ The skeleton cross-references the pilot intended use, GxP boundary, ERPNext obje
 - [Installation qualification](installation-qualification.md) for IQ evidence planning.
 - [Operational qualification](operational-qualification.md) for OQ evidence planning.
 - [Performance qualification](performance-qualification.md) for PQ evidence planning.
+- [Regulated-content artifact safety](../artifact-safety.md) for synthetic-only public examples and confidential-reference boundaries.
 
 ## Control Points
 
@@ -25,6 +26,7 @@ The skeleton cross-references the pilot intended use, GxP boundary, ERPNext obje
 - Draft-only output posture: every artifact remains open placeholders until a qualified process approves it outside this repository.
 - Human approval: regulated use, release decisions, disposition decisions, and quality actions require qualified human approval outside this scaffold.
 - Evidence and audit posture: future evidence and audit fields must distinguish copied source context, reviewer notes, and approval state.
+- Artifact safety: public validation package examples must stay synthetic-only public examples; raw customer data, raw regulated records, raw credentials, raw secrets, workstation-local absolute paths, live connector details, and customer identifiers fail closed and stay out of committed public artifacts.
 
 ## Open Placeholders
 
