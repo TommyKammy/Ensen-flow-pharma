@@ -7,6 +7,7 @@ const requiredFiles = [
   ".github/workflows/ci.yml",
   "README.md",
   "docs/artifact-safety.md",
+  "docs/customer-readiness-checklist.md",
   "docs/erpnext-object-mapping.md",
   "docs/intended-use.md",
   "docs/protocol-v0.4.0-track-b-boundary.md",
@@ -115,6 +116,10 @@ if (await fileExists("README.md")) {
 
   if (!/\[[^\]]*regulated workflow controls[^\]]*\]\(docs\/regulated-workflow-controls\.md\)/i.test(readme)) {
     failures.push("README.md must link to docs/regulated-workflow-controls.md with regulated workflow controls navigation text.");
+  }
+
+  if (!/\[[^\]]*customer-readiness checklist[^\]]*\]\(docs\/customer-readiness-checklist\.md\)/i.test(readme)) {
+    failures.push("README.md must link to docs/customer-readiness-checklist.md with customer-readiness checklist navigation text.");
   }
 }
 
@@ -259,6 +264,43 @@ if (await fileExists("docs/regulated-workflow-controls.md")) {
   ]) {
     if (!regulatedWorkflowControls.includes(phrase)) {
       failures.push(`docs/regulated-workflow-controls.md must name the regulated workflow control phrase: ${phrase}`);
+    }
+  }
+}
+
+if (await fileExists("docs/customer-readiness-checklist.md")) {
+  const readinessChecklist = readFileSync("docs/customer-readiness-checklist.md", "utf8").toLowerCase();
+  for (const phrase of [
+    "customer-readiness checklist",
+    "readiness discussion only",
+    "not validation execution",
+    "not production approval",
+    "not a compliance guarantee",
+    "runtime access-control changes",
+    "sensitive access material handling",
+    "out of scope",
+    "intended use",
+    "synthetic public examples",
+    "classification",
+    "confidential references",
+    "read-only inputs",
+    "draft-only outputs",
+    "human approval",
+    "rollback / revocation",
+    "evidence retention",
+    "residual risks",
+    "pilot is not ready",
+    "raw regulated content",
+    "sensitive access material",
+    "live erpnext details",
+    "write-back requests",
+    "electronic signature requests",
+    "batch release",
+    "final disposition",
+    "automated quality decisions"
+  ]) {
+    if (!readinessChecklist.includes(phrase)) {
+      failures.push(`docs/customer-readiness-checklist.md must name the customer-readiness phrase: ${phrase}`);
     }
   }
 }
