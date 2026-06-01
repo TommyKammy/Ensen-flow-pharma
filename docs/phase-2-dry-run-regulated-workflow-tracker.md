@@ -21,11 +21,11 @@ The Phase 2 child issues should be opened and executed in this order after this 
 
 | Order | Planned child issue | Purpose | Exit boundary |
 | --- | --- | --- | --- |
-| 1 | PHARMA-P2-010 document review | Review the existing intended use, artifact safety, regulated workflow controls, ERPNext mapping, and validation package scaffold for Phase 2 fit. | Gaps are captured as draft-only follow-ups, with no validation execution claim. |
-| 2 | PHARMA-P2-020 training task routing | Draft how synthetic or copied sample context would route into training-oriented task review. | Routing remains fake / read-only / draft-only and does not route live records or credentials. |
-| 3 | PHARMA-P2-030 quality follow-up | Draft quality follow-up prompts, owner checkpoints, and escalation notes for dry-run review. | Follow-up does not make automatic quality decisions, release decisions, or disposition decisions. |
-| 4 | PHARMA-P2-040 validation evidence mapping | Map dry-run draft artifacts to validation package evidence placeholders and audit expectations. | Mapping stays planning guidance and does not create approved evidence or a validated workflow. |
-| 5 | PHARMA-P2-050 RG-2 readiness | Decide whether the draft set is ready for dry-run regulated workflow draft evaluation. | RG-2 readiness is not validation execution, production approval, or a compliance guarantee. |
+| 1 | PHARMA-P2-001 document review | Review the existing intended use, artifact safety, regulated workflow controls, ERPNext mapping, and validation package scaffold for Phase 2 fit. | Gaps are captured as draft-only follow-ups, with no validation execution claim. |
+| 2 | PHARMA-P2-002 training task routing | Draft how synthetic or copied sample context would route into training-oriented task review. | Routing remains fake / read-only / draft-only and does not route live records or credentials. |
+| 3 | PHARMA-P2-003 quality follow-up | Draft quality follow-up prompts, owner checkpoints, and escalation notes for dry-run review. | Follow-up does not make automatic quality decisions, release decisions, or disposition decisions. |
+| 4 | PHARMA-P2-004 validation evidence mapping | Map dry-run draft artifacts to validation package evidence placeholders and audit expectations. | Mapping stays planning guidance and does not create approved evidence or a validated workflow. |
+| 5 | PHARMA-P2-005 RG-2 readiness | Decide whether the draft set is ready for dry-run regulated workflow draft evaluation. | RG-2 readiness is not validation execution, production approval, or a compliance guarantee. |
 
 Child issues should reference this tracker as the parent boundary. They should not infer tenant, customer, repository, ERPNext object, validation package, or environment linkage from naming conventions, path shape, or nearby metadata alone.
 
