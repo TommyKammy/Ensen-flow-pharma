@@ -14,6 +14,7 @@ const requiredFiles = [
   "docs/protocol-v0.4.0-track-b-boundary.md",
   "docs/phase-2-dry-run-regulated-workflow-tracker.md",
   "docs/regulated-workflow-controls.md",
+  "docs/training-task-routing-workflow.md",
   "docs/validation-package/README.md",
   "docs/validation-package/functional-specification.md",
   "docs/validation-package/installation-qualification.md",
@@ -126,6 +127,10 @@ if (await fileExists("README.md")) {
 
   if (!/\[[^\]]*document review workflow[^\]]*\]\(docs\/document-review-workflow\.md\)/i.test(readme)) {
     failures.push("README.md must link to docs/document-review-workflow.md with document review workflow navigation text.");
+  }
+
+  if (!/\[[^\]]*training task routing workflow[^\]]*\]\(docs\/training-task-routing-workflow\.md\)/i.test(readme)) {
+    failures.push("README.md must link to docs/training-task-routing-workflow.md with training task routing workflow navigation text.");
   }
 
   if (!/\[[^\]]*Phase 2[^\]]*tracker[^\]]*\]\(docs\/phase-2-dry-run-regulated-workflow-tracker\.md\)/i.test(readme)) {
@@ -348,6 +353,46 @@ if (await fileExists("docs/document-review-workflow.md")) {
   ]) {
     if (!documentReviewWorkflow.includes(phrase)) {
       failures.push(`docs/document-review-workflow.md must name the document review workflow phrase: ${phrase}`);
+    }
+  }
+}
+
+if (await fileExists("docs/training-task-routing-workflow.md")) {
+  const trainingTaskRoutingWorkflow = readFileSync("docs/training-task-routing-workflow.md", "utf8").toLowerCase();
+  for (const phrase of [
+    "training task routing workflow",
+    "pharma-p2-002",
+    "synthetic examples",
+    "copied sample context",
+    "read-only planning/reference material",
+    "draft-only routing suggestions",
+    "human approval checkpoint",
+    "source provenance",
+    "data classification",
+    "confidential-reference posture",
+    "rejection / revocation",
+    "evidence / audit separation",
+    "rollback notes",
+    "phase 1 validation package skeleton",
+    "track b validation delta",
+    "flow phase 6",
+    "public-safe evidence",
+    "not training assignment",
+    "not training completion",
+    "not customer sop execution",
+    "not validation execution",
+    "not production approval",
+    "not live erpnext operation",
+    "no lms integration",
+    "no write-back credentials",
+    "no electronic signature behavior",
+    "no batch release",
+    "no final disposition",
+    "no automated quality decision",
+    "no gxp compliance readiness"
+  ]) {
+    if (!trainingTaskRoutingWorkflow.includes(phrase)) {
+      failures.push(`docs/training-task-routing-workflow.md must name the training task routing workflow phrase: ${phrase}`);
     }
   }
 }
