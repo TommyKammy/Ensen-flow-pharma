@@ -11,6 +11,7 @@ const requiredFiles = [
   "docs/erpnext-object-mapping.md",
   "docs/intended-use.md",
   "docs/protocol-v0.4.0-track-b-boundary.md",
+  "docs/phase-2-dry-run-regulated-workflow-tracker.md",
   "docs/regulated-workflow-controls.md",
   "docs/validation-package/README.md",
   "docs/validation-package/functional-specification.md",
@@ -120,6 +121,10 @@ if (await fileExists("README.md")) {
 
   if (!/\[[^\]]*customer-readiness checklist[^\]]*\]\(docs\/customer-readiness-checklist\.md\)/i.test(readme)) {
     failures.push("README.md must link to docs/customer-readiness-checklist.md with customer-readiness checklist navigation text.");
+  }
+
+  if (!/\[[^\]]*Phase 2[^\]]*tracker[^\]]*\]\(docs\/phase-2-dry-run-regulated-workflow-tracker\.md\)/i.test(readme)) {
+    failures.push("README.md must link to docs/phase-2-dry-run-regulated-workflow-tracker.md with Phase 2 tracker navigation text.");
   }
 }
 
@@ -301,6 +306,47 @@ if (await fileExists("docs/customer-readiness-checklist.md")) {
   ]) {
     if (!readinessChecklist.includes(phrase)) {
       failures.push(`docs/customer-readiness-checklist.md must name the customer-readiness phrase: ${phrase}`);
+    }
+  }
+}
+
+if (await fileExists("docs/phase-2-dry-run-regulated-workflow-tracker.md")) {
+  const phase2Tracker = readFileSync("docs/phase-2-dry-run-regulated-workflow-tracker.md", "utf8").toLowerCase();
+  for (const phrase of [
+    "phase 2",
+    "pharma-p2-000",
+    "dry-run regulated workflow draft",
+    "fake / read-only / draft-only",
+    "synthetic examples",
+    "copied sample context",
+    "raw regulated records",
+    "live erpnext endpoints",
+    "write-back credentials",
+    "electronic signatures",
+    "batch release",
+    "final disposition",
+    "automated quality decisions",
+    "compliance guarantee",
+    "document review",
+    "training task routing",
+    "quality follow-up",
+    "validation evidence mapping",
+    "rg-2 readiness",
+    "readiness for dry-run regulated workflow draft evaluation",
+    "not validation execution",
+    "not production approval",
+    "not a compliance guarantee",
+    "flow phase 6",
+    "x-gate 5",
+    "audit",
+    "evidence export",
+    "recovery",
+    "rollback",
+    "revocation",
+    "no shared runtime dependency"
+  ]) {
+    if (!phase2Tracker.includes(phrase)) {
+      failures.push(`docs/phase-2-dry-run-regulated-workflow-tracker.md must name the Phase 2 tracker phrase: ${phrase}`);
     }
   }
 }
