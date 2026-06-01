@@ -8,6 +8,7 @@ const requiredFiles = [
   "README.md",
   "docs/artifact-safety.md",
   "docs/customer-readiness-checklist.md",
+  "docs/document-review-workflow.md",
   "docs/erpnext-object-mapping.md",
   "docs/intended-use.md",
   "docs/protocol-v0.4.0-track-b-boundary.md",
@@ -121,6 +122,10 @@ if (await fileExists("README.md")) {
 
   if (!/\[[^\]]*customer-readiness checklist[^\]]*\]\(docs\/customer-readiness-checklist\.md\)/i.test(readme)) {
     failures.push("README.md must link to docs/customer-readiness-checklist.md with customer-readiness checklist navigation text.");
+  }
+
+  if (!/\[[^\]]*document review workflow[^\]]*\]\(docs\/document-review-workflow\.md\)/i.test(readme)) {
+    failures.push("README.md must link to docs/document-review-workflow.md with document review workflow navigation text.");
   }
 
   if (!/\[[^\]]*Phase 2[^\]]*tracker[^\]]*\]\(docs\/phase-2-dry-run-regulated-workflow-tracker\.md\)/i.test(readme)) {
@@ -306,6 +311,43 @@ if (await fileExists("docs/customer-readiness-checklist.md")) {
   ]) {
     if (!readinessChecklist.includes(phrase)) {
       failures.push(`docs/customer-readiness-checklist.md must name the customer-readiness phrase: ${phrase}`);
+    }
+  }
+}
+
+if (await fileExists("docs/document-review-workflow.md")) {
+  const documentReviewWorkflow = readFileSync("docs/document-review-workflow.md", "utf8").toLowerCase();
+  for (const phrase of [
+    "document review workflow",
+    "pharma-p2-001",
+    "low-risk",
+    "synthetic",
+    "copied sample context",
+    "read-only planning/reference material",
+    "draft-only artifacts",
+    "human approval checkpoint",
+    "source provenance",
+    "data classification",
+    "confidential-reference posture",
+    "rejection / revocation",
+    "evidence / audit separation",
+    "rollback notes",
+    "phase 1 validation package skeleton",
+    "track b validation delta",
+    "flow phase 6",
+    "public-safe evidence",
+    "not validation execution",
+    "not production approval",
+    "not live erpnext operation",
+    "no write-back credentials",
+    "no electronic signature behavior",
+    "no batch release",
+    "no final disposition",
+    "no automated quality decision",
+    "no gxp compliance readiness"
+  ]) {
+    if (!documentReviewWorkflow.includes(phrase)) {
+      failures.push(`docs/document-review-workflow.md must name the document review workflow phrase: ${phrase}`);
     }
   }
 }
