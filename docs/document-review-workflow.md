@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This PHARMA-P2-001 document review workflow is a low-risk Phase 2 draft for controlled document review planning. It describes how synthetic or copied sample context can be reviewed, summarized, and mapped to validation-package placeholders without creating regulated execution evidence.
+This PHARMA-P2-010 document review workflow is a low-risk Phase 2 draft for controlled document review planning. It describes how synthetic or copied sample context can be reviewed, summarized, and mapped to validation-package placeholders without creating regulated execution evidence.
 
 This workflow is documentation-only. It is not validation execution, not production approval, not live ERPNext operation, and not evidence that any workflow package is approved for regulated use.
 

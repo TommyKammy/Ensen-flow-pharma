@@ -319,7 +319,7 @@ if (await fileExists("docs/document-review-workflow.md")) {
   const documentReviewWorkflow = readFileSync("docs/document-review-workflow.md", "utf8").toLowerCase();
   for (const phrase of [
     "document review workflow",
-    "pharma-p2-001",
+    "pharma-p2-010",
     "low-risk",
     "synthetic",
     "copied sample context",
